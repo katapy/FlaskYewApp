@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: Build ui
         run: |
+          ls
           cd ui
           rustup target add wasm32-unknown-unknown
           cargo install trunk
