@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build ui
-        working-directory: ./ui
+        working-directory: ui
         run: |
           rustup target add wasm32-unknown-unknown
           cargo install trunk
