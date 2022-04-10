@@ -8,6 +8,9 @@ on:
 jobs:
   docker_build_and_push:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: ["server"]
     env:
       IMAGE_NAME: flask-yew-app
     steps:
