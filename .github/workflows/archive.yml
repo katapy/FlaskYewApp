@@ -7,9 +7,11 @@ defaults:
     working-directory: ui
 
 jobs:
-  build_and_test:
+  ui_build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Build ui
         run: |
           pwd
