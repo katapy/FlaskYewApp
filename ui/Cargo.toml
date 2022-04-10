@@ -1,0 +1,30 @@
+[package]
+name = "flask_yew_app"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+yew = "0.19.3"
+yew-router = "0.16.0"
+# web-sys = "0.3.56"
+# reqwasm = "0.5.0"
+futures = "0.3.21"
+# servo-websocket = "0.21.0"
+
+[dependencies.web-sys]
+version = "0.3.22"
+features = [
+  "BinaryType",
+  "Blob",
+  "ErrorEvent",
+  "FileReader",
+  "MessageEvent",
+  "ProgressEvent",
+  "WebSocket",
+]
+
