@@ -2,19 +2,21 @@ name: Node CI
 
 on: [push]
 
+defaults:
+  run:
+    working-directory: ./ui
+
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
     steps:
       - name: Build ui
-        uses: actions/checkout@v2
         run: |
           pwd
           ls -a
           rustup target add wasm32-unknown-unknown
           cargo install trunk
           trunk build --release --public-url flask_yew_app
-        working-directory: ./ui
           
       - name: Archive dist folder
         uses: actions/upload-artifact@v3
