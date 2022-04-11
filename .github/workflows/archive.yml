@@ -49,6 +49,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - run: |
+          mkdir js
           pwd
           ls -Ra
           echo "import init from \"/static/dist/`ls -R1 | grep .js`\";" > js/index.js
