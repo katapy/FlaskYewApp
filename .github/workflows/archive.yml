@@ -26,6 +26,21 @@ jobs:
           name: dist
           path: ui/dist
 
+  download_dist:
+    defaults:
+      run:
+        working-directory: server
+    runs-on: ubuntu-latest
+    steps:
+      - name: download dist
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: server/dist
+      - run: |
+          pwd
+          ls -a
+
 
   create_js_file:
     runs-on: ubuntu-latest
