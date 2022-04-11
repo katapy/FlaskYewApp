@@ -31,6 +31,7 @@ jobs:
       run:
         working-directory: server
     runs-on: ubuntu-latest
+    needs: ui_build
     steps:
       - name: download dist
         uses: actions/download-artifact@v3
