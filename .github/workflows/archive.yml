@@ -29,7 +29,7 @@ jobs:
   download_dist:
     defaults:
       run:
-        working-directory: server
+        working-directory: server/app/static
     runs-on: ubuntu-latest
     needs: ui_build
     steps:
@@ -38,32 +38,15 @@ jobs:
         with:
           name: dist
           path: server/app/static/dist
-      
-  create_js_folder:
-    defaults:
-      run:
-        working-directory: server/app/static
-    runs-on: ubuntu-latest
-    needs: download_dist
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
       - run: |
           mkdir js
           pwd
           ls -Ra
-          echo "import init from \"/static/dist/`ls -R1 | grep .js`\";" > js/index.js
-          echo "await init(\"/static/dist/`ls -R1 | grep .wasms`\");" >> js/index.js
+          cd js && echo "import init from \"/static/dist/`ls -R1 | grep index-.js`\";" > index.js
+          cd js && echo "await init(\"/static/dist/`ls -R1 | grep index-.wasms`\");" >> js/index.js
       - name: Archive js folder
         uses: actions/upload-artifact@v3
         with:
           name: js
           path: server/app/static/js
-
-
-  create_js_file:
-    runs-on: ubuntu-latest
-    needs: ui_build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      
