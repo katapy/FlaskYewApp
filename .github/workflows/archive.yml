@@ -44,7 +44,7 @@ jobs:
       run:
         working-directory: server/app/static
     runs-on: ubuntu-latest
-    needs: ui_build
+    needs: download_dist
     steps:
       - run: |
           pwd
