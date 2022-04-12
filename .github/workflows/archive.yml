@@ -41,9 +41,9 @@ jobs:
       - run: |
           mkdir js
           pwd
-          ls -Ra
-          echo "import init from \"/static/dist/`ls -R1 dist | grep index-.js`\";" > index.js
-          cd js && echo "await init(\"/static/dist/`ls -R1 dist | grep index-.wasms`\");" >> js/index.js
+          ls -Ra dist
+          echo "import init from \"/static/dist/`ls -Ra dist | grep index-.js`\";" > index.js
+          cd js && echo "await init(\"/static/dist/`ls -Ra dist | grep index-.wasms`\");" >> js/index.js
       - name: Archive js folder
         uses: actions/upload-artifact@v3
         with:
