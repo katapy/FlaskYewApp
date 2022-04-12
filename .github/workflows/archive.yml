@@ -49,4 +49,9 @@ jobs:
         with:
           name: js
           path: server/app/static/js
+      - name: Archive js folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: js
+          path: server/app/static/js
       
