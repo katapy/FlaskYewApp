@@ -19,7 +19,6 @@ jobs:
           profile: minimal
           toolchain: stable
       - uses: Swatinem/rust-cache@v1
-
       - name: Build ui
         run: |
           pwd
