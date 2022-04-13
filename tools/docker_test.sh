@@ -11,11 +11,6 @@ CONTAINER_NAME="flask-yew-app"
 echo "ui build complete"
 
 # Remove old file
-(
-    cd server/app
-    # rm -rf static
-)
-
 rm -rf server/app/static
 mkdir server/app/static
 cp -r ui/dist server/app/static
