@@ -52,13 +52,22 @@ pub mod chat {
                     <div class="flex-none w-56 h-screen bg-gray-100">
                         <button onclick={link.callback(|_| Msg::Add)} class="btn btn-primary">{"+"}</button>
                         <span class="font-bold mx-3">{&format!(" {} ", self.count)}</span>    
-                        <ul id="messages">
-                            { 
-                                self.messages.clone().iter().map(|message| {
-                                    html!{<p> {{ message }}</p>}
-                                }).collect::<Html>()
-                            }
-                        </ul>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th> { "Title cell" }</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    { 
+                                        self.messages.clone().iter().map(|message| {
+                                            html!{ <tr><td> {{ message }} </td></tr> }
+                                        }).collect::<Html>()
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             }
