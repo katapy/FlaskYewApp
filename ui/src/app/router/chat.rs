@@ -24,10 +24,10 @@ pub mod chat {
         type Properties = ();
 
         fn create(ctx: &yew::Context<Self>) -> Self {
-            // let task = self.wss.connect("ws://127.0.0.1:8080/ws/", cbout, cbnot.into());
-            // let mut ws = WebSocket::open("ws://127.0.0.1:8000/ws").unwrap();
-            let ws = WebSocket::new("ws://127.0.0.1:8000/ws/").unwrap();
-            // let url = Url::parse("ws://127.0.0.1:8000/ws").unwrap(); // Get the URL
+            // let task = self.wss.connect("ws://127.0.0.1:500/ws/", cbout, cbnot.into());
+            // let mut ws = WebSocket::open("ws://127.0.0.1:5000/ws").unwrap();
+            // let ws = WebSocket::new("ws://127.0.0.1:5000/ws/").unwrap();
+            // let url = Url::parse("ws://127.0.0.1:5000/ws").unwrap(); // Get the URL
             // let request = Client::connect(url).unwrap(); // Connect to the server
             Self {
                 count: 0,
@@ -49,26 +49,24 @@ pub mod chat {
             let link = ctx.link();
             html! {
                 <div class="flex w-screen">
-                    <div class="flex-none w-56 h-screen bg-gray-100">
-                        <button onclick={link.callback(|_| Msg::Add)} class="btn btn-primary">{"+"}</button>
-                        <span class="font-bold mx-3">{&format!(" {} ", self.count)}</span>    
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th> { "Title cell" }</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    { 
-                                        self.messages.clone().iter().map(|message| {
-                                            html!{ <tr><td> {{ message }} </td></tr> }
-                                        }).collect::<Html>()
-                                    }
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <button onclick={link.callback(|_| Msg::Add)} class="btn btn-primary">{"+"}</button>
+                    <span class="font-bold mx-3">{&format!(" {} ", self.count)}</span>    
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th> { "Title cell" }</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                { 
+                                    self.messages.clone().iter().map(|message| {
+                                        html!{ <tr><td> {{ message }} </td></tr> }
+                                    }).collect::<Html>()
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             }
         }

@@ -1,5 +1,6 @@
 
 pub mod chat;
+pub mod err_page;
 
 pub mod router {
     use web_sys::HtmlInputElement;
@@ -8,6 +9,7 @@ pub mod router {
 
     use crate::app::user_inner::user_inner::User;
     use crate::app::router::chat::chat::Chat;
+    use crate::app::router::err_page::err_page::ErrPage;
 
     #[derive(Clone, Routable, PartialEq)]
     pub enum Route {
@@ -57,12 +59,14 @@ pub mod router {
         
         html! {
             <div class="bg-gray-800 flex w-screen">
-                <div class="container mx-auto flex flex-col justify-center items-center	">
-                    <form class="m-4 flex">
-                        <input {oninput} class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder="Username"/>
-                        <Link<Route> to={Route::Chat}> <button {onclick} disabled={username.len()<1} class="px-8 rounded-r-lg bg-violet-600	  text-white font-bold p-4 uppercase border-violet-600 border-t border-b border-r" >{"Go Chatting!"}</button></Link<Route>>
-                    </form>
-                </div>
+                <form class="m-4 flex">
+                    <input {oninput} placeholder="Username"/>
+                    <Link<Route> to={Route::Chat}> 
+                        <button {onclick} disabled={username.len()<1} >
+                            {"Go Chatting!"}
+                        </button>
+                    </Link<Route>>
+                </form>
             </div>
         }
     }
@@ -76,7 +80,7 @@ pub mod router {
                 <Secure />
             },
             Route::Chat => html! {<Chat/>},
-            Route::NotFound => html! { <h2>{ "404" }</h2> },
+            Route::NotFound => html! {<ErrPage/>}
         }
     }
 }
