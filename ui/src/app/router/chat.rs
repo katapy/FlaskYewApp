@@ -8,10 +8,11 @@ pub mod chat {
 
     // use websocket::{Client, Message};
     // use websocket::client::request::Url;
-    use web_sys::{ErrorEvent, MessageEvent, WebSocket};
+    use web_sys::{ErrorEvent, MessageEvent, WebSocket, HtmlInputElement};
 
     pub enum Msg {
-        Add
+        Add,
+        Input(HtmlInputElement)
     }
 
     pub struct Chat {
@@ -41,12 +42,22 @@ pub mod chat {
                     self.count += 1;
                     self.messages.push(format!("count: {}", self.count));
                 },
+                Msg::Input(e) => {
+                    let id = e.id();
+                    let value = e.value();
+                    self.messages.push(format!("ID: {}, Value: {}", id, value));
+                },
             }
             true
         }
 
         fn view(&self, ctx: &yew::Context<Self>) -> yew::Html {
             let link = ctx.link();
+            let oninput = link.callback(|e: InputEvent| {
+                Msg::Input(e.target_unchecked_into::<HtmlInputElement>())
+            });
+
+            let mut i = 0;
             html! {
                 <div class="flex w-screen">
                     <button onclick={link.callback(|_| Msg::Add)} class="btn btn-primary">{"+"}</button>
@@ -55,16 +66,25 @@ pub mod chat {
                         <thead>
                             <tr>
                                 <th> { "Title cell" }</th>
+                                <th> { "Input field" }</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                { 
-                                    self.messages.clone().iter().map(|message| {
-                                        html!{ <tr><td> {{ message }} </td></tr> }
-                                    }).collect::<Html>()
-                                }
-                            </tr>
+                            { 
+                                self.messages.clone().iter().map(|message| {
+                                    i = i + 1;
+                                    html!{ 
+                                        <tr>
+                                            <td> 
+                                                {{ message }} 
+                                            </td>
+                                            <td>
+                                                <input placeholder="Input here" id={{ format!("input_field{}", i) }} oninput={{oninput.clone()}}/>
+                                            </td>
+                                        </tr> 
+                                    }
+                                }).collect::<Html>()
+                            }
                         </tbody>
                     </table>
                 </div>
