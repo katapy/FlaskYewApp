@@ -21,7 +21,7 @@ pub mod app{
             <ContextProvider<User> context={(*ctx).clone()}>
                 <BrowserRouter>
                     <div class="flex w-screen h-screen">
-                        <h1> { "OurFractal" } </h1>
+                        <h1> { "Flask Yew App" } </h1>
                         <Switch<Route> render={Switch::render(switch)}/>
                     </div>
                 </BrowserRouter>
