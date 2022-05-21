@@ -11,6 +11,11 @@ sock = Sock(app)
 def hello():
     return render_template('index.html')
 
+@app.route("/ws")
+def ws_test():
+    return render_template('ws_test.html')
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     """If 404 error, go to yew 404 error page."""
