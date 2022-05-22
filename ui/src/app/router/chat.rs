@@ -53,7 +53,7 @@ pub mod chat {
 
         fn view(&self, ctx: &yew::Context<Self>) -> yew::Html {
             let link = ctx.link();
-            let oninput = link.callback(|e: InputEvent| {
+            let onchange = link.callback(|e: Event| {
                 Msg::Input(e.target_unchecked_into::<HtmlInputElement>())
             });
 
@@ -79,7 +79,7 @@ pub mod chat {
                                                 {{ message }} 
                                             </td>
                                             <td>
-                                                <input placeholder="Input here" id={{ format!("input_field{}", i) }} oninput={{oninput.clone()}}/>
+                                                <input placeholder="Input here" id={{ format!("input_field{}", i) }} onchange={{onchange.clone()}}/>
                                             </td>
                                         </tr> 
                                     }
