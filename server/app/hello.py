@@ -25,6 +25,7 @@ def page_not_found(error):
 def echo(ws):
     while True:
         data = ws.receive()
+        print(data)
         ws.send("ws server send: " + data)
 
 if __name__ == "__main__":

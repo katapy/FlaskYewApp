@@ -8,8 +8,10 @@ pub mod chat {
 
     // use websocket::{Client, Message};
     // use websocket::client::request::Url;
-    use web_sys::{ErrorEvent, MessageEvent, WebSocket, HtmlInputElement};
-
+    use web_sys::{ErrorEvent, MessageEvent, HtmlInputElement};
+    // use wasm_sockets::{self, WebSocketError};
+    // use reqwasm::websocket::{futures::WebSocket, Message};
+    // use ws::{listen, connect, CloseCode};
     pub enum Msg {
         Add,
         Input(HtmlInputElement)
@@ -30,6 +32,7 @@ pub mod chat {
             // let ws = WebSocket::new("ws://127.0.0.1:5000/ws/").unwrap();
             // let url = Url::parse("ws://127.0.0.1:5000/ws").unwrap(); // Get the URL
             // let request = Client::connect(url).unwrap(); // Connect to the server
+            // let ws = WebSocket::new("ws://localhost:5000").unwrap();
             Self {
                 count: 0,
                 messages: vec![],
