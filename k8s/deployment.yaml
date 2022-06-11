@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: flask-yew-app
+      annotations:
+        dev.okteto.com/auto-ingress: "true"
     spec:
       containers:
       - name: flask-yew-app
